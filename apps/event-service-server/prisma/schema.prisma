@@ -1,0 +1,17 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model BlogEvent {
+  createdAt      DateTime  @default(now())
+  eventTimestamp DateTime?
+  eventType      String?
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  postId         String?
+  updatedAt      DateTime  @updatedAt
+}
